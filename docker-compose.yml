@@ -1,8 +1,8 @@
 version: "3.4"
 services:
-  python-boilerplate-project:
+  fast-api-boilerplate-project:
     tty: true
-    image: "python-boilerplate-project"
+    image: "fast-api-boilerplate-project"
     stdin_open: true
     build:
       context: .

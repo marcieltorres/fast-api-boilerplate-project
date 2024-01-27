@@ -1,6 +1,6 @@
-# python-boilerplate-project
+# fast-api-boilerplate-project
 
-A python boilerplate project using poetry
+it's a simple and useful boilerplate for python projects using fast api framework
 
 ## Technology and Resources
 
