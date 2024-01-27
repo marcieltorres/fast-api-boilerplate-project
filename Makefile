@@ -1,5 +1,5 @@
-APP_NAME="python-boilerplate-project"
-IMAGE_NAME="python-boilerplate-project"
+APP_NAME="fast-api-boilerplate-project"
+IMAGE_NAME="fast-api-boilerplate-project"
 VERSION="latest"
 
 ################################
