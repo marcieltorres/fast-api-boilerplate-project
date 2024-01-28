@@ -19,7 +19,7 @@ local/lint/fix:
 	poetry run ruff . --fix --exit-non-zero-on-fix
 
 local/run:
-	poetry run python src/main.py
+	poetry run python run.py
 
 ############################################
 # COMMANDS TO RUN USING DOCKER (RECOMMENDED)
@@ -44,7 +44,7 @@ docker/lint/fix:
 	docker-compose run ${APP_NAME} poetry run ruff . --fix --exit-non-zero-on-fix
 
 docker/run:
-	docker-compose run ${APP_NAME} poetry run python src/main.py
+	docker-compose run --service-ports ${APP_NAME} poetry run python run.py
 
 ####################################
 # DOCKER IMAGE COMMANDS

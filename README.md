@@ -1,6 +1,6 @@
 # fast-api-boilerplate-project
 
-it's a simple and useful boilerplate for python projects using fast api framework
+it's a simple and useful boilerplate for python projects using FastAPI framework
 
 ## Technology and Resources
 
@@ -9,6 +9,8 @@ it's a simple and useful boilerplate for python projects using fast api framewor
 - [Docker Compose](https://docs.docker.com/compose/) - **pre-requisite**
 - [Poetry](https://python-poetry.org/) - **pre-requisite**
 - [Ruff](https://github.com/astral-sh/ruff)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [Uvicorn](https://www.uvicorn.org/)
 
 *Please pay attention on **pre-requisites** resources that you must install/configure.*
 
@@ -37,6 +39,21 @@ push image | `make docker/image/push` | - | to push the docker image
 **Helpful commands**
 
 *Please, check all available commands in the [Makefile](Makefile) for more information*.
+
+### Uvicorn settings
+
+Uvicorn is an ASGI web server implementation for Python and you can [configure](https://www.uvicorn.org/settings/) it overriding these values on the [settings.conf](settings.conf) file.
+
+Variable | Description | Available Values | Default Value | Required
+--- | --- | --- | --- | ---
+UVICORN_HOST | The host of the application |  `a valid host address` | `0.0.0.0` | Yes
+UVICORN_PORT | The application port |  `a valid port number` | `8000` | Yes
+UVICORN_WORKERS | The number of uvicorn workers |  `a valid number` | `dev` | No
+UVICORN_ACCESS_LOG | Enable or disable the access log |  `True / False` | `True` | No
+UVICORN_LOG_LEVEL | Set the log level |  `critical / error / warning / info / debug / trace'` | `info` | No
+
+*Note: The default value of these configs are available on [run.py](run.py).*
+
 
 ## Logging
 
