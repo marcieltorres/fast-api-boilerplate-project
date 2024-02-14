@@ -1,6 +1,13 @@
+# loading and exporting all env vars from .env file automatically
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
 APP_NAME="fast-api-boilerplate-project"
 IMAGE_NAME="fast-api-boilerplate-project"
 VERSION="latest"
+MAIN_ENTRYPOINT="run.py"
 
 ################################
 # COMMANDS TO RUN LOCALLY
@@ -19,7 +26,7 @@ local/lint/fix:
 	poetry run ruff . --fix --exit-non-zero-on-fix
 
 local/run:
-	poetry run python run.py
+	poetry run python ${MAIN_ENTRYPOINT}
 
 ############################################
 # COMMANDS TO RUN USING DOCKER (RECOMMENDED)
@@ -44,7 +51,7 @@ docker/lint/fix:
 	docker-compose run ${APP_NAME} poetry run ruff . --fix --exit-non-zero-on-fix
 
 docker/run:
-	docker-compose run --service-ports ${APP_NAME} poetry run python run.py
+	docker-compose run --service-ports ${APP_NAME} poetry run python ${MAIN_ENTRYPOINT}
 
 ####################################
 # DOCKER IMAGE COMMANDS
