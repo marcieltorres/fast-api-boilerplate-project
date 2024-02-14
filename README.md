@@ -18,7 +18,7 @@ it's a simple and useful boilerplate for python projects using FastAPI framework
 
 ### Environment variables
 
-*Use this section to explain each env variable available on your application* 
+*Use this section to explain each env variable available on your application*
 
 Variable | Description | Available Values | Default Value | Required
 --- | --- | --- | --- | ---
