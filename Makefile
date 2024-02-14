@@ -17,13 +17,13 @@ local/install: generate-default-env-file
 	poetry install
 
 local/tests:
-	poetry run pytest -s --cov-report=html --cov-report=term --cov . 
+	poetry run pytest -s --cov-report=html --cov-report=term --cov .
 
 local/lint:
 	poetry run ruff check .
-	
+
 local/lint/fix:
-	poetry run ruff . --fix --exit-non-zero-on-fix
+	poetry run ruff . --fix
 
 local/run:
 	poetry run python ${MAIN_ENTRYPOINT}
@@ -48,7 +48,7 @@ docker/lint:
 	docker-compose run ${APP_NAME} poetry run ruff check .
 
 docker/lint/fix:
-	docker-compose run ${APP_NAME} poetry run ruff . --fix --exit-non-zero-on-fix
+	docker-compose run ${APP_NAME} poetry run ruff . --fix
 
 docker/run:
 	docker-compose run --service-ports ${APP_NAME} poetry run python ${MAIN_ENTRYPOINT}
