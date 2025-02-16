@@ -4,16 +4,17 @@ version = "0.1.0"
 description = "it's a simple and useful boilerplate for python projects using fast api framework"
 authors = ["Authors Name <authorsmail@>"]
 license = "MIT"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi = "0.115.6"
+fastapi = "0.115.8"
 uvicorn = "0.34.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "8.3.4"
 pytest-cov = "^6.0.0"
-ruff = "^0.8.1"
+ruff = "^0.9.6"
 httpx = "0.28.1"
 
 [tool.pytest.ini_options]
