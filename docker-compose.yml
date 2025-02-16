@@ -1,4 +1,3 @@
-version: "3.4"
 services:
   fast-api-boilerplate-project:
     tty: true
