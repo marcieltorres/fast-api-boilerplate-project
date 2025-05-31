@@ -11,6 +11,7 @@ it's a simple and useful boilerplate for python projects using FastAPI framework
 - [Ruff](https://github.com/astral-sh/ruff)
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Uvicorn](https://www.uvicorn.org/)
+- [Alembic](https://alembic.sqlalchemy.org/en/latest/) - *database migration tool*
 
 *Please pay attention on **pre-requisites** resources that you must install/configure.*
 
@@ -24,6 +25,11 @@ Variable | Description | Available Values | Default Value | Required
 --- | --- | --- | --- | ---
 ENV | The application enviroment |  `dev / test / qa / prod` | `dev` | Yes
 PYTHONPATH | Provides guidance to the Python interpreter about where to find libraries and applications | [ref](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH) | `.` | Yes
+DATABASE_USER | The database user |  `a valid user` | `postgres` | Yes
+DATABASE_PASS | The database user password |  `a valid password` | `postgres` | Yes
+DATABASE_PORT | The database port |  `a valid port number` | `5433` | Yes
+DATABASE_NAME | The database name |  `a valid database name` | `fast_api_boilerplate_project_db` | Yes
+DATABASE_ENDPOINT | The database endpoint |  `a valid database endpoint` | `localhost` | Yes
 
 *Note: When you run the install command (using docker or locally), a .env file will be created automatically based on [env.template](env.template)*
 
@@ -34,6 +40,9 @@ tests | `make docker/tests` | `make local/tests` | to run the tests with coverag
 lint | `make docker/lint` | `make local/lint` | to run static code analysis using ruff
 lint/fix | `make docker/lint/fix` | `make local/lint/fix` | to fix files using ruff
 run | `make docker/run` | `make local/run` | to run the project
+migration apply | - | `make migration/apply` | to apply new version of migrations
+migration revision | - | `make migration/revision message="text a new message"` | to create a new revision of migrations
+migration downgrade | - | `make migration/downgrade` | to downgrade a version of migrations
 build image | `make docker/image/build` | - | to build the docker image
 push image | `make docker/image/push` | - | to push the docker image
 

@@ -25,6 +25,9 @@ MAIN_ENTRYPOINT="run.py"
 local/install: generate-default-env-file
 	poetry install
 
+local/activate:
+	poetry env activate
+
 local/tests:
 	poetry run pytest -s --cov-report=html --cov-report xml:coverage.xml --cov-report=term --cov .
 
@@ -32,7 +35,7 @@ local/lint:
 	poetry run ruff check .
 
 local/lint/fix:
-	poetry run ruff . --fix
+	poetry run ruff check --fix
 
 local/run:
 	poetry run python ${MAIN_ENTRYPOINT}
@@ -44,7 +47,7 @@ local/run:
 docker/install: generate-default-env-file
 	$(DOCKER_COMPOSE) build ${APP_NAME}
 
-docker/up:
+docker/up: generate-default-env-file
 	$(DOCKER_COMPOSE) up -d
 
 docker/down:
@@ -57,10 +60,22 @@ docker/lint:
 	$(DOCKER_COMPOSE) run ${APP_NAME} poetry run ruff check .
 
 docker/lint/fix:
-	$(DOCKER_COMPOSE) run ${APP_NAME} poetry run ruff . --fix
+	$(DOCKER_COMPOSE) run ${APP_NAME} poetry run ruff check --fix
 
 docker/run:
 	$(DOCKER_COMPOSE) run --service-ports ${APP_NAME} poetry run python ${MAIN_ENTRYPOINT}
+
+##########################################
+# COMMANDS TO RUN MIGRATIONS USING ALEMBIC
+##########################################
+migration/apply: local/activate
+	poetry run alembic upgrade head
+
+migration/downgrade: local/activate
+	poetry run alembic downgrade -1
+
+migration/revision: local/activate
+	poetry run alembic revision --autogenerate -m "$(message)"
 
 ####################################
 # DOCKER IMAGE COMMANDS
