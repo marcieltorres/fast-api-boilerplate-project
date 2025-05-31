@@ -19,3 +19,5 @@ COPY src src
 COPY settings.conf src
 COPY logging.conf src
 COPY run.py src
+COPY migrations src
+COPY alembic.ini src

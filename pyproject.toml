@@ -10,6 +10,8 @@ package-mode = false
 python = "^3.11"
 fastapi = "0.115.12"
 uvicorn = "0.34.2"
+alembic = "^1.16.1"
+psycopg = { extras = ['binary'], version = '^3.2.4' }
 
 [tool.poetry.group.dev.dependencies]
 pytest = "8.3.5"
@@ -35,7 +37,8 @@ directory = "htmlcov"
 [tool.ruff]
 line-length = 120
 target-version = "py311"
-exclude = ["run.py"]
+exclude = ["run.py", "migration"]
+
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "S"]
