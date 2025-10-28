@@ -3,6 +3,8 @@ on: [pull_request]
 jobs:
   run_tests_and_lint:
     name: "Run Tests and Lint"
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - run: echo "Running build and test for ${{ github.ref }} branch"
