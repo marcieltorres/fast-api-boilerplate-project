@@ -1,4 +1,4 @@
-FROM python:3.11.0-slim-buster AS base
+FROM python:3.14-slim-bookworm AS base
 
 EXPOSE 8000
 

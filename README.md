@@ -4,7 +4,7 @@ it's a simple and useful boilerplate for python projects using FastAPI framework
 
 ## Technology and Resources
 
-- [Python 3.11](https://www.python.org/downloads/release/python-3110/) - **pre-requisite**
+- [Python 3.14](https://www.python.org/downloads/release/python-3140/) - **pre-requisite**
 - [Docker](https://www.docker.com/get-started) - **pre-requisite**
 - [Docker Compose](https://docs.docker.com/compose/) - **pre-requisite**
 - [Poetry](https://python-poetry.org/) - **pre-requisite**
