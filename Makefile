@@ -84,8 +84,14 @@ migration/revision: local/activate
 docker/image/build:
 	docker build . --target production -t ${IMAGE_NAME}:${VERSION}
 
+docker/image/build/distroless:
+	docker build . --target production-distroless -t ${IMAGE_NAME}:${VERSION}-distroless
+
 docker/image/push:
 	docker push ${IMAGE_NAME}:${VERSION}
+
+docker/image/push/distroless:
+	docker push ${IMAGE_NAME}:${VERSION}-distroless
 
 ##################
 # HEPFUL COMMANDS

@@ -43,8 +43,10 @@ run | `make docker/run` | `make local/run` | to run the project
 migration apply | - | `make migration/apply` | to apply new version of migrations
 migration revision | - | `make migration/revision message="text a new message"` | to create a new revision of migrations
 migration downgrade | - | `make migration/downgrade` | to downgrade a version of migrations
-build image | `make docker/image/build` | - | to build the docker image
+build image | `make docker/image/build` | - | to build the production docker image
+build image distroless | `make docker/image/build/distroless` | - | to build the distroless production image
 push image | `make docker/image/push` | - | to push the docker image
+push image distroless | `make docker/image/push/distroless` | - | to push the distroless image
 
 **Helpful commands**
 
@@ -64,6 +66,46 @@ UVICORN_LOG_LEVEL | Set the log level |  `critical / error / warning / info / de
 
 *Note: The default value of these configs are available on [run.py](run.py).*
 
+## Production Docker Images
+
+This project provides two production-ready Docker images with a multi-stage build approach:
+
+### Standard Production Image (`production`)
+
+Based on `python:3.14-slim-bookworm`, this is a minimal image without Poetry or development dependencies.
+
+```bash
+make docker/image/build
+```
+
+### Distroless Production Image (`production-distroless`)
+
+An ultra-minimal image using [Chainguard](https://www.chainguard.dev/) for maximum security and smallest footprint.
+
+```bash
+make docker/image/build/distroless
+```
+
+**Why Chainguard?**
+
+- **Minimal attack surface**: No shell, package managers, or unnecessary tools
+- **Reduced CVEs**: Significantly fewer vulnerabilities compared to traditional base images
+- **Smaller size**: Only essential runtime components included
+- **Signed images**: Cryptographically signed with Sigstore for supply chain security
+- **SBOM included**: Software Bill of Materials for compliance and auditing
+
+**Trade-offs:**
+
+- No shell access for debugging (use ephemeral debug containers if needed)
+- Free tier only provides `:latest` tag (specific version tags like `3.14.x` require paid tier)
+
+**Running the distroless image:**
+
+```bash
+docker run -p 8000:8000 --env-file .env fast-api-boilerplate-project:latest-distroless
+```
+
+For more information about Chainguard images, visit the [official documentation](https://edu.chainguard.dev/chainguard/chainguard-images/).
 
 ## Logging
 
