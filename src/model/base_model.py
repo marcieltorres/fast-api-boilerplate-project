@@ -1,16 +1,16 @@
 from datetime import date, datetime
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 from sqlalchemy import DateTime, func
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 from sqlalchemy.orm import DeclarativeBase, Mapped, class_mapper, mapped_column
 
 
 class BaseModel(DeclarativeBase):
     """Base model for all models"""
 
-    id: Mapped[UUID] = mapped_column(
-        UUID(as_uuid=True),
+    id: Mapped[PG_UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
         primary_key=True,
         unique=True,
         nullable=False,
