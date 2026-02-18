@@ -44,3 +44,26 @@ F | [pyflakes](https://pypi.org/project/pyflakes/)
 I | [isort](https://pypi.org/project/isort/)
 N | [pep8-naming](https://pypi.org/project/pep8-naming/)
 S | [flake8-bandit](https://pypi.org/project/flake8-bandit/)
+
+# Integration Tests with Database
+
+We use [Testcontainers](https://testcontainers.com/) for database integration tests. A PostgreSQL container starts automatically when tests run.
+
+**Writing a database test:**
+
+```python
+from unittest import TestCase
+from sqlalchemy import text
+
+class MyDatabaseTest(TestCase):
+    db_session = None  # Injected automatically
+
+    def test_example(self):
+        result = self.db_session.execute(text("SELECT 1"))
+        self.assertEqual(result.scalar(), 1)
+```
+
+- Place tests in `tests/it/`
+- Use `self.db_session` for database operations
+- Use `self.db_engine` when needed
+- Each test gets an isolated session with automatic rollback

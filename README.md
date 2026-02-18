@@ -12,6 +12,7 @@ it's a simple and useful boilerplate for python projects using FastAPI framework
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Uvicorn](https://www.uvicorn.org/)
 - [Alembic](https://alembic.sqlalchemy.org/en/latest/) - *database migration tool*
+- [Testcontainers](https://testcontainers.com/) - *integration testing*
 
 *Please pay attention on **pre-requisites** resources that you must install/configure.*
 
