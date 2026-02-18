@@ -6,22 +6,25 @@ jobs:
     permissions:
       contents: read
     runs-on: ubuntu-latest
-    env:
-      TESTCONTAINERS_RYUK_DISABLED: "true"
-      TESTCONTAINERS_HOST_OVERRIDE: "host.docker.internal"
     steps:
-      - run: echo "Running build and test for ${{ github.ref }} branch"
-
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Installing the project
-        run: make docker/install
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Install dependencies
+        run: make local/install
 
       - name: Running Lint
-        run: make docker/lint
+        run: make local/lint
 
       - name: Running tests
-        run: make docker/test
+        run: make local/tests
