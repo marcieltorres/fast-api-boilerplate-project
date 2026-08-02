@@ -14,6 +14,7 @@ ifneq (,$(wildcard ./.env))
 endif
 
 APP_NAME="fast-api-boilerplate-project"
+DB_NAME="fast-api-boilerplate-project-db"
 IMAGE_NAME="fast-api-boilerplate-project"
 VERSION="latest"
 MAIN_ENTRYPOINT="run.py"
@@ -49,6 +50,9 @@ docker/install: generate-default-env-file
 
 docker/up: generate-default-env-file
 	$(DOCKER_COMPOSE) up -d
+
+docker/up/db-only: generate-default-env-file
+	$(DOCKER_COMPOSE) up -d ${DB_NAME}
 
 docker/down:
 	$(DOCKER_COMPOSE) down --remove-orphans
